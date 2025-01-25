@@ -34,31 +34,18 @@ struct HomeView: View {
                         .cornerRadius(10)
                         .padding()
                     HStack(spacing: 20) {
-                        Circle()
+                        Image("5")
                             .frame(height: 50)
                             .onTapGesture {
-                                emotion = .angry
                             }
-                        Circle()
+                        Image("2")
                             .frame(height: 50)
-                            .onTapGesture {
-                                emotion = .sad
-                            }
-                        Circle()
+                        Image("1")
                             .frame(height: 50)
-                            .onTapGesture {
-                                emotion = .calm
-                            }
-                        Circle()
+                        Image("3")
                             .frame(height: 50)
-                            .onTapGesture {
-                                emotion = .happy
-                            }
-                        Circle()
+                        Image("4")
                             .frame(height: 50)
-                            .onTapGesture {
-                                emotion = .excited
-                            }
                     }
                 }
             }
