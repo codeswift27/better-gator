@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct JournalView: View {
+    @Environment(\.managedObjectContext) private var journal
     
     @State private var journalInput = ""
     @FocusState private var focus: Bool
@@ -31,32 +32,34 @@ struct JournalView: View {
                 ZStack{
                     Rectangle()
                         .fill(Color(UIColor.systemBackground))
-                        .frame(height:200)
                         .cornerRadius(10)
+                        .frame(height: 400)
                         .padding()
                     
                     VStack {
                         Text("Prompt")
                             .font(.title)
-                        Spacer()
-                        
                         TextField("Enter your response here",text:$journalInput, axis:.vertical)
                             .padding()
                             .onSubmit {
                                 print($journalInput)
+                                let newJournal = Journal(context: journal)
+                                newJournal.content = journalInput
+                                newJournal.timestamp = Date()
+                                do{
+                                    try journal.save()
+                                }
+                                catch{
+                                    print("error")
+                                }
                             }
                             .focused($focus)
                             .onAppear{
                                 focus = true
-                    
                             }
+                        Spacer()
                         
-                            
-                        
-                            
-                        
-                        
-                    }.frame(height:200)
+                    }.frame(height:400)
                 }
                 
                     
