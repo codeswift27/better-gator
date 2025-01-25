@@ -7,12 +7,26 @@
 
 import SwiftUI
 
+enum Emotion: Int {
+    case excited = 0
+    case happy = 1
+    case calm = 2
+    case sad = 3
+    case angry = 4
+}
+
 struct HomeView: View {
+    @State var emotion: Emotion? = nil
     var body: some View {
         VStack {
             Text("How are you feeling?")
                 .font(.title)
             HStack {
+//                if true {
+//                    TextField($emotion)
+//                } else {
+//
+//                }
                 ZStack {
                     Rectangle()
                         .fill(Color.accentColor)
@@ -23,15 +37,28 @@ struct HomeView: View {
                         Circle()
                             .frame(height: 50)
                             .onTapGesture {
+                                emotion = .angry
                             }
                         Circle()
                             .frame(height: 50)
+                            .onTapGesture {
+                                emotion = .sad
+                            }
                         Circle()
                             .frame(height: 50)
+                            .onTapGesture {
+                                emotion = .calm
+                            }
                         Circle()
                             .frame(height: 50)
+                            .onTapGesture {
+                                emotion = .happy
+                            }
                         Circle()
                             .frame(height: 50)
+                            .onTapGesture {
+                                emotion = .excited
+                            }
                     }
                 }
             }
