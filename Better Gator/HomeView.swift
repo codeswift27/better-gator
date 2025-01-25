@@ -16,7 +16,8 @@ enum Emotion: Int {
 }
 
 struct HomeView: View {
-    @State var emotion: Emotion? = nil
+    @Environment(\.managedObjectContext) private var viewContext
+    @State var currentEmotion: Emotion? = nil
     var body: some View {
         VStack {
             Text("How are you feeling?")
@@ -32,43 +33,52 @@ struct HomeView: View {
                         Image("excited")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 100)
+                            .frame(height: 200)
                             .onTapGesture {
-                                emotion = .angry
+                                currentEmotion = .angry
                             }
                         Image("happy")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 100)
+                            .frame(height: 150)
                             .onTapGesture {
-                                emotion = .sad
+                                currentEmotion = .sad
                             }
                         Image("calm")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 100)
+                            .frame(height: 150)
                             .onTapGesture {
-                                emotion = .calm
+                                currentEmotion = .calm
                             }
                         Image("sad")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 100)
+                            .frame(height: 150)
                             .onTapGesture {
-                                emotion = .happy
+                                currentEmotion = .happy
                             }
                         Image("angry")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 100)
+                            .frame(height: 150)
                             .onTapGesture {
-                                emotion = .excited
+                                currentEmotion = .excited
                             }
                     }
+                    .padding()
                 }
             }
             Button(action: {
-//                let newMood = Mood(
+                guard let currentEmotion = currentEmotion else { return }
+                let newMood = Mood(context: viewContext)
+                newMood.emotion = Int32(currentEmotion.rawValue)
+                newMood.timestamp = Date()
+                do {
+                    try viewContext.save()
+                } catch {
+                    print("error!!")
+                }
             }) {
                 Text("Log emotion")
             }
