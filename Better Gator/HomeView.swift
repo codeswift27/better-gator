@@ -29,35 +29,35 @@ struct HomeView: View {
                         .cornerRadius(10)
                         .padding()
                     HStack {
-                        Image("5")
+                        Image("excited")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 100)
                             .onTapGesture {
                                 emotion = .angry
                             }
-                        Image("2")
+                        Image("happy")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 100)
                             .onTapGesture {
                                 emotion = .sad
                             }
-                        Image("1")
+                        Image("calm")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 100)
                             .onTapGesture {
                                 emotion = .calm
                             }
-                        Image("3")
+                        Image("sad")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 100)
                             .onTapGesture {
                                 emotion = .happy
                             }
-                        Image("4")
+                        Image("angry")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 100)
