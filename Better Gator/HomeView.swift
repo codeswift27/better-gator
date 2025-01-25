@@ -20,17 +20,17 @@ struct HomeView: View {
                         .cornerRadius(10)
                         .padding()
                     HStack(spacing: 20) {
-                        Circle()
+                        Image("5")
                             .frame(height: 50)
                             .onTapGesture {
                             }
-                        Circle()
+                        Image("2")
                             .frame(height: 50)
-                        Circle()
+                        Image("1")
                             .frame(height: 50)
-                        Circle()
+                        Image("3")
                             .frame(height: 50)
-                        Circle()
+                        Image("4")
                             .frame(height: 50)
                     }
                 }
