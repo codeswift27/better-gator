@@ -23,8 +23,9 @@ struct HomeView: View {
                         Circle()
                             .frame(height: 50)
                             .onTapGesture {
-                                print("hi")
                             }
+                        Circle()
+                            .frame(height: 50)
                         Circle()
                             .frame(height: 50)
                         Circle()
