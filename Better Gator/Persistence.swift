@@ -7,6 +7,14 @@
 
 import CoreData
 
+enum Emotion: Int {
+    case excited = 0
+    case happy = 1
+    case calm = 2
+    case sad = 3
+    case angry = 4
+}
+
 struct PersistenceController {
     static let shared = PersistenceController()
 

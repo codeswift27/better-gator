@@ -17,7 +17,20 @@ struct ContentView: View {
 //    private var items: FetchedResults<Item>
 
     var body: some View {
-       Text("hello world")
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+            Text("Meditation")
+                .tabItem {
+                    Label("Meditate", systemImage: "camera.macro")
+                }
+            Text("Journal")
+                .tabItem {
+                    Label("Journal", systemImage: "book.closed.fill")
+                }
+        }
     }
 
 //    private func addItem() {
