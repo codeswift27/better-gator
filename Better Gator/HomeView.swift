@@ -22,33 +22,56 @@ struct HomeView: View {
             Text("How are you feeling?")
                 .font(.title)
             HStack {
-//                if true {
-//                    TextField($emotion)
-//                } else {
-//
-//                }
                 ZStack {
                     Rectangle()
-                        .fill(Color.accentColor)
+                        .fill(Color(UIColor.secondarySystemBackground))
                         .frame(height: 100)
                         .cornerRadius(10)
                         .padding()
-                    HStack(spacing: 20) {
+                    HStack {
                         Image("5")
-                            .frame(height: 50)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 100)
                             .onTapGesture {
+                                emotion = .angry
                             }
                         Image("2")
-                            .frame(height: 50)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 100)
+                            .onTapGesture {
+                                emotion = .sad
+                            }
                         Image("1")
-                            .frame(height: 50)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 100)
+                            .onTapGesture {
+                                emotion = .calm
+                            }
                         Image("3")
-                            .frame(height: 50)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 100)
+                            .onTapGesture {
+                                emotion = .happy
+                            }
                         Image("4")
-                            .frame(height: 50)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 100)
+                            .onTapGesture {
+                                emotion = .excited
+                            }
                     }
                 }
             }
+            Button(action: {}) {
+                Text("Log emotion")
+                    .foregroundStyle(Color.primary)
+            }
+            .background(Color.accentColor)
         }
     }
 }
