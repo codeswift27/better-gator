@@ -21,6 +21,11 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
+                HStack {
+                    Spacer()
+                    Image(systemName: "person.crop.circle.fill")
+                }
+                .padding()
                 Text("How are you feeling?")
                     .font(.headline)
                 HStack {
@@ -31,13 +36,13 @@ struct HomeView: View {
                             .cornerRadius(10)
                             .padding()
                         HStack {
-                            Image("excited")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 200)
-                                .onTapGesture {
-                                    currentMood = .angry
-                                }
+//                            Image("excited")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(height: 200)
+//                                .onTapGesture {
+//                                    currentMood = .angry
+//                                }
                             Image("happy")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -84,6 +89,7 @@ struct HomeView: View {
                     Text("Log emotion")
                 }
                 .buttonStyle(.borderedProminent)
+                Spacer()
             }
             .navigationTitle("Hello, Name")
         }
