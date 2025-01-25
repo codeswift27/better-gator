@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalView: View {
     @Environment(\.managedObjectContext) private var journal
-    @State private var currentMood: Emotion = .angry
+    @State private var currentMood: Emotion = .happy
     @State private var journalInput = ""
     @State private var moodInt = 0
     @State private var prompt = ""
@@ -18,8 +18,9 @@ struct JournalView: View {
     var promptDict = [0: "When do you feel most inspired? Can you find that                                      inspiration more frequently than you already do?",
                               1: "Who are the people who make you happiest? How are your relationships with those people right now? Is there anything you want to do differently in those relationships?",
                               2: "What is one thing you want to add to your daily routine? What is one thing you want to take away from your daily routine?",
-                              3: "What makes you feel the happiest, and how can you move toward that happiness right now?" ,
-                              4: "Is there one thing you can forgive yourself for today? Write down what you want to say to yourself."]
+                              3: "What am I afraid of and how is it limiting me?",
+                              4: "What makes you feel the happiest, and how can you move toward that happiness right now?" ,
+                              5: "Is there one thing you can forgive yourself for today? Write down what you want to say to yourself."]
     
     
     var body: some View {
@@ -27,7 +28,7 @@ struct JournalView: View {
             ZStack{
                 Rectangle()
                     .fill(Color.accentColor)
-                    .frame(height: 750)
+                    .frame(height: 700)
                     .cornerRadius(10)
                     .padding()
                 VStack {
@@ -36,7 +37,7 @@ struct JournalView: View {
                     Spacer()
                         
                 }
-                .frame(height: 600)
+                .frame(height: 700)
                 
                 ZStack{
                     Rectangle()
@@ -49,7 +50,7 @@ struct JournalView: View {
                        
                         Text(prompt)
                             .font(.title)
-                        TextField("Enter your response here",text:$journalInput, axis:.vertical)
+                        TextField("Enter your journal entry here",text:$journalInput, axis:.vertical)
                             .padding()
                             .onSubmit {
                                 print($journalInput)
@@ -68,10 +69,13 @@ struct JournalView: View {
                                 focus = true
                                 prompt =  promptDict[currentMood.rawValue] ?? ""
                             }
-                            .onChange(of: currentMood) { newValue in
-                                                            prompt = promptDict[newValue.rawValue] ?? ""
-                                                        }
-                            
+                            .onDisappear{
+                                focus = false
+                            }
+                            .onChange(of: currentMood) { _, newValue in
+                                prompt = promptDict[newValue.rawValue] ?? ""
+                            }
+                        
                         Spacer()
                         
                     }.frame(height:400)
