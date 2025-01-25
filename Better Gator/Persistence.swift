@@ -15,7 +15,7 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Log(context: viewContext)
+            let newItem = Mood(context: viewContext)
             newItem.timestamp = Date()
         }
         do {

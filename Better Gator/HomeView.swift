@@ -67,11 +67,12 @@ struct HomeView: View {
                     }
                 }
             }
-            Button(action: {}) {
+            Button(action: {
+//                let newMood = Mood(
+            }) {
                 Text("Log emotion")
-                    .foregroundStyle(Color.primary)
             }
-            .background(Color.accentColor)
+            .buttonStyle(.borderedProminent)
         }
     }
 }
