@@ -17,7 +17,7 @@ enum Emotion: Int {
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State var currentEmotion: Emotion? = nil
+    @State var currentMood: Emotion? = nil
     var body: some View {
         NavigationView {
             VStack {
@@ -36,44 +36,44 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 200)
                                 .onTapGesture {
-                                    currentEmotion = .angry
+                                    currentMood = .angry
                                 }
                             Image("happy")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .onTapGesture {
-                                    currentEmotion = .sad
+                                    currentMood = .sad
                                 }
                             Image("calm")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .onTapGesture {
-                                    currentEmotion = .calm
+                                    currentMood = .calm
                                 }
                             Image("sad")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .onTapGesture {
-                                    currentEmotion = .happy
+                                    currentMood = .happy
                                 }
                             Image("angry")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .onTapGesture {
-                                    currentEmotion = .excited
+                                    currentMood = .excited
                                 }
                         }
                         .padding()
                     }
                 }
                 Button(action: {
-                    guard let currentEmotion = currentEmotion else { return }
+                    guard let currentMood = currentMood else { return }
                     let newMood = Mood(context: viewContext)
-                    newMood.emotion = Int32(currentEmotion.rawValue)
+                    newMood.emotion = Int32(currentMood.rawValue)
                     newMood.timestamp = Date()
                     do {
                         try viewContext.save()
