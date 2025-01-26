@@ -33,7 +33,7 @@ class CalendarUIViewController: UIViewController {
 
 class CalendarViewDelegate: NSObject, UICalendarViewDelegate {
     var calendarView: UICalendarView? = nil
-    var decorations: [Date?: [UICalendarView.Decoration]]
+    var decorations: [Date?: UICalendarView.Decoration]
     
     override init() {
         let valentinesDay = DateComponents(
@@ -54,8 +54,18 @@ class CalendarViewDelegate: NSObject, UICalendarViewDelegate {
             color: UIColor.red,
             size: .large
         )
+        let heartStar = UICalendarView.Decoration.customView {
+            let circle1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+            circle1.backgroundColor = .blue
+            circle1.layer.cornerRadius = 30
+//            let circle2 = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 10)))
+//            circle2.backgroundColor = .green
+//            circle2.layer.cornerRadius = 30
+//            let stack = UIStackView(arrangedSubviews: [circle1, circle2])
+            return circle1
+        }
         
-        decorations = [valentinesDay.date: [heart, star]]
+        decorations = [valentinesDay.date: heartStar]
     }
     
     // Return a decoration (if any) for the specified day.
@@ -70,16 +80,29 @@ class CalendarViewDelegate: NSObject, UICalendarViewDelegate {
         )
         
         // Return any decoration saved for that date.
-        var first: UICalendarView.Decoration? = nil
-        if let decorationList = decorations[day.date] {
-            if !decorationList.isEmpty {
-                first = decorations[day.date]![0]
-                decorations[day.date]?.remove(at: 0)
-            }
-        }
-        return first
+        return decorations[day.date]
     }
 }
 
-
+class DecorationView: UIView {
+    required init() {
+        super.init(frame: .zero)
+        createDecorations(emotions: [])
+    }
+    
+    func createDecorations(emotions: [Int]) {
+        let circle1 = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 10)))
+        circle1.backgroundColor = .blue
+        circle1.layer.cornerRadius = 30
+        let circle2 = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 10)))
+        circle2.backgroundColor = .green
+        circle2.layer.cornerRadius = 30
+        let stack = UIStackView(arrangedSubviews: [circle1, circle2])
+        self.addSubview(stack)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
