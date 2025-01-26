@@ -163,7 +163,7 @@ struct HomeView: View {
                 .shadow(radius: 10)
             }
             
-            .navigationTitle("Hello, Name")
+            .navigationTitle(greetingTime)
         }
     }
 }
