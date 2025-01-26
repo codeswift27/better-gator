@@ -39,6 +39,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .background(currentMood == .excited ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .excited
                                 }
@@ -47,6 +48,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .background(currentMood == .happy ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .happy
                                 }
@@ -57,6 +59,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .background(currentMood == .calm ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .calm
                                 }
@@ -65,6 +68,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .background(currentMood == .nervous ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .nervous
                                 }
@@ -75,6 +79,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .background(currentMood == .sad ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .sad
                                 }
@@ -83,6 +88,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
                                 .background(currentMood == .angry ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .angry
                                 }
