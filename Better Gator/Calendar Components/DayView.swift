@@ -20,9 +20,10 @@ struct DayView: View {
                         date.isToday() ? Font.Weight.bold : Font.Weight.regular
                     )
                     .foregroundStyle(Color.primary)
-                    .background(Circle()
-                        .fill(date.isToday() ? Color.red : Color.white )
-                        .frame(width: 35, height: 35, alignment: .center)
+                    .background(
+                        Circle()
+                            .fill(date.isToday() ? Color.red : Color.white )
+                            .frame(width: 35, height: 35, alignment: .center)
                     )
                 if (day.hasEvent) {
                     Circle()
