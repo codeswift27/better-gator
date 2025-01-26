@@ -23,7 +23,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
-            Text("Meditation")
+            MeditationView()
                 .tabItem {
                     Label("Meditate", systemImage: "camera.macro")
                 }
