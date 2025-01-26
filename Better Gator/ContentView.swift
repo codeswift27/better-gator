@@ -26,7 +26,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Meditate", systemImage: "camera.macro")
                 }
-            JournalView()
+            Text("fhdjsk")
                 .tabItem {
                     Label("Journal", systemImage: "book.closed.fill")
                 }
