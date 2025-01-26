@@ -18,7 +18,7 @@ enum Emotion: Int {
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State var currentMood: Emotion? = nil
+    @Binding var currentMood: Emotion?
     var body: some View {
         NavigationView {
             VStack {
@@ -38,15 +38,19 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
+                                .background(currentMood == .excited ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-                                    currentMood = .angry
+                                    currentMood = .excited
                                 }
                             Image("happy")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
+                                .background(currentMood == .happy ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-                                    currentMood = .sad
+                                    currentMood = .happy
                                 }
                         }
                         HStack {
@@ -54,6 +58,8 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
+                                .background(currentMood == .calm ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .calm
                                 }
@@ -61,6 +67,8 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
+                                .background(currentMood == .nervous ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
                                     currentMood = .nervous
                                 }
@@ -70,15 +78,19 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
+                                .background(currentMood == .sad ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-                                    currentMood = .happy
+                                    currentMood = .sad
                                 }
                             Image("angry")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
+                                .background(currentMood == .angry ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-                                    currentMood = .excited
+                                    currentMood = .angry
                                 }
                         }
                     }
@@ -108,5 +120,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(currentMood: .constant(.calm))
 }

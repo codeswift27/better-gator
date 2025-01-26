@@ -15,10 +15,11 @@ struct ContentView: View {
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
 //        animation: .default)
 //    private var items: FetchedResults<Item>
+    @State var currentMood: Emotion? = nil
 
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(currentMood: $currentMood)
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
@@ -26,7 +27,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Meditate", systemImage: "camera.macro")
                 }
-            JournalView()
+            JournalView(currentMood: $currentMood)
                 .tabItem {
                     Label("Journal", systemImage: "book.closed.fill")
                 }
