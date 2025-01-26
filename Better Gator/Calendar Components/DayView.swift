@@ -34,31 +34,45 @@ struct DayView: View {
                         .frame(width: 36, height: 36, alignment: .center)
                 }
                 VStack(spacing: 4) {
-                    Rectangle()
-                        .fill(moods.contains(.excited) ? Color.orange : .clear)
-                        .cornerRadius(10)
-                        .frame(width: 36, height: 6)
-                    Rectangle()
-                        .fill(moods.contains(.happy) ? Color.yellow : .clear)
-                        .cornerRadius(10)
-                        .frame(width: 36, height: 6)
-                    Rectangle()
-                        .fill(moods.contains(.calm) ? Color.purple : .clear)
-                        .cornerRadius(10)
-                        .frame(width: 36, height: 6)
-                    Rectangle()
-                        .fill(moods.contains(.nervous) ? Color.green : .clear)
-                        .cornerRadius(10)
-                        .frame(width: 36, height: 6)
-                    Rectangle()
-                        .fill(moods.contains(.sad) ? Color.blue : .clear)
-                        .cornerRadius(10)
-                        .frame(width: 36, height: 6)
-                    Rectangle()
-                        .fill(moods.contains(.angry) ? Color.red : .clear)
-                        .cornerRadius(10)
-                        .frame(width: 36, height: 6)
+                    if moods.contains(.excited) {
+                        Rectangle()
+                            .fill(Color.orange)
+                            .cornerRadius(10)
+                            .frame(width: 36, height: 6)
+                    }
+                    if moods.contains(.happy) {
+                        Rectangle()
+                            .fill(Color.yellow)
+                            .cornerRadius(10)
+                            .frame(width: 36, height: 6)
+                    }
+                    if moods.contains(.calm) {
+                        Rectangle()
+                            .fill(Color.purple)
+                            .cornerRadius(10)
+                            .frame(width: 36, height: 6)
+                    }
+                    if moods.contains(.nervous) {
+                        Rectangle()
+                            .fill(Color.green)
+                            .cornerRadius(10)
+                            .frame(width: 36, height: 6)
+                    }
+                    if moods.contains(.sad) {
+                        Rectangle()
+                            .fill(Color.blue)
+                            .cornerRadius(10)
+                            .frame(width: 36, height: 6)
+                    }
+                    if moods.contains(.angry) {
+                        Rectangle()
+                            .fill(Color.red)
+                            .cornerRadius(10)
+                            .frame(width: 36, height: 6)
+                    }
+                    Spacer()
                 }
+                .frame(height: 56)
             }
         }
     }
