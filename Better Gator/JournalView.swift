@@ -48,6 +48,7 @@ struct JournalView: View {
             ZStack {
                 Rectangle()
                     .fill(Color.accentColor)
+                    .opacity(0.5)
                     .cornerRadius(10)
                     .padding()
 
