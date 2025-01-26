@@ -3,19 +3,12 @@ import SwiftUI
 
 
 enum Emotion: Int {
-
     case excited = 0
-
     case happy = 1
-
     case calm = 2
-
     case nervous = 3
-
     case sad = 4
-
     case angry = 5
-
 }
 
 
@@ -46,7 +39,7 @@ struct HomeView: View {
             return "Good evening"
         }
     }
-
+    @State var showProfile = false
     @Binding var currentMood: Emotion?
     var body: some View {
         NavigationView {

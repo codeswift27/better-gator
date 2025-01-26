@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @Binding var isPresented: Bool
-    @State private var userName: String =  UserDefaults.standard.String(forKey: "Save") ?? "John Doe"
+    @State private var userName: String =  UserDefaults.standard.string(forKey: "Save") ?? "John Doe"
     
     
     var body: some View {
