@@ -24,13 +24,8 @@ struct HomeView: View {
             VStack {
                 HStack {
                     Spacer()
-                    ProfileView()
-                    .tabItem {
-                    Label("Journal", systemImage: "person.crop.circle.fill"))
-//                        .resizable()
-//                        .frame(height: )
-                    }
-                    
+                    Image(systemName: "person.crop.circle.fill")
+                }
                 .padding()
                 Text("How are you feeling?")
                     .font(.headline)
