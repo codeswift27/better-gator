@@ -9,7 +9,8 @@ import SwiftUI
 
 
 struct ProfileView: View {
-    @State private var userName: String = "John Doe" 
+    @Binding var isPresented: Bool
+    @State private var userName: String = "John Doe"
     
     var body: some View {
         NavigationView {
@@ -36,14 +37,27 @@ struct ProfileView: View {
                     }
                     .buttonStyle(.borderedProminent)
                 }
+//                Button(role: .destructive, action: { resetChanges() }) {
+//                    Text("Reset Changes")
+//                }
             }
             .navigationTitle("Profile")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        isPresented.toggle()
+                    }) {
+                        Text("Cancel")
+                    }
+                }
+            }
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        resetChanges()
+                        isPresented.toggle()
                     }) {
-                        Text("Reset")
+                        Text("Done")
+                            .bold()
                     }
                 }
             }
