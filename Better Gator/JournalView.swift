@@ -5,7 +5,6 @@
 //  Created by Foege, Erin M. on 1/25/25.
 //
 
-
 import SwiftUI
 import GoogleGenerativeAI
 
@@ -18,7 +17,6 @@ struct JournalView: View {
     @State private var prompt = ""
     @State private var response: LocalizedStringKey = " "
     @State private var isLoading = false
-    @State private var hasSubmitted = false
     @FocusState private var focus: Bool
 
     var promptDict: [Int: String] = [
@@ -32,15 +30,14 @@ struct JournalView: View {
 
     func generateResponse() async {
         isLoading = true
+        defer { isLoading = false } // Ensure loading is stopped even if an error occurs
         do {
             let result = try await model.generateContent(journalInput)
             response = LocalizedStringKey(result.text ?? "No response found")
         } catch {
             response = LocalizedStringKey("Something went wrong! \n\(error.localizedDescription)")
         }
-        isLoading = false
         journalInput = ""
-        hasSubmitted = false // Reset submission state after processing
     }
 
     var body: some View {
@@ -64,20 +61,22 @@ struct JournalView: View {
                         .padding()
                         .focused($focus)
                         .onSubmit {
-                            hasSubmitted = true // Mark as submitted
-                            focus = false // Dismiss keyboard
+                            guard !journalInput.isEmpty else { return }
+                            print("Submitting")
+                            Task {
+                                await generateResponse()
+                            }
                         }
 
                     Spacer()
 
-                    if hasSubmitted {
-                        if isLoading {
-                            ProgressView() // Show loading indicator
-                        } else {
-                            Text(response)
-                                .font(.body)
-                                .padding()
-                        }
+                    if isLoading {
+                        ProgressView()
+                            .padding()
+                    } else if !response.isEmpty {
+                        Text(response)
+                            .font(.body)
+                            .padding()
                     }
                 }
                 .padding()
@@ -85,11 +84,6 @@ struct JournalView: View {
             .onAppear { prompt = promptDict[currentMood.rawValue] ?? "" }
             .onChange(of: currentMood) { _, newValue in
                 prompt = promptDict[newValue.rawValue] ?? ""
-            }
-            .task {
-                if hasSubmitted {
-                    await generateResponse()
-                }
             }
         }
     }
