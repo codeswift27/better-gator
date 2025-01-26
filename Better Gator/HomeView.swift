@@ -54,7 +54,18 @@ struct HomeView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        Image(systemName: "person.crop.circle.fill")
+                         Button(action: {
+                            showProfile.toggle()
+                        }) {
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 28)
+            
+                        }
+                        .sheet(isPresented: $showProfile) {
+                            ProfileView(isPresented: $showProfile)
+                        }
                     }
                     .padding()
                     Text("How are you feeling?")
