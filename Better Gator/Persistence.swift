@@ -55,5 +55,3 @@ struct PersistenceController {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
-
-extension Mood: Identifiable {}

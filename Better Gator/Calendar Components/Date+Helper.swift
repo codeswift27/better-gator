@@ -92,10 +92,10 @@ extension Date {
         return (todayDateString == dateToCompareString)
     }
     
-    func isSameDay() -> Bool {
+    func isSameDay(date: Date) -> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        let todayDateString = dateFormatter.string(from: Date())
+        let todayDateString = dateFormatter.string(from: date)
         let dateToCompareString = dateFormatter.string(from: self)
         return (todayDateString == dateToCompareString)
     }

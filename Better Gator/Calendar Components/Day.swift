@@ -11,11 +11,11 @@ struct Day: Identifiable {
     var id: UUID = UUID()
     
     var date: Date?
-    var moods: [Emotion]
+//    var moods: [Emotion]
     
-    init(date: Date?, moods: [Emotion] = []) {
+    init(date: Date?) {
         self.date = date
-        self.moods = moods
+//        self.moods = moods.map { Emotion(rawValue: Int($0.emotion)) ?? .calm }
     }
     
 }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MonthView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\Mood.timestamp)])
+    private var moodLog: FetchedResults<Mood>
     var month: Month
     @State var leadingPadding: CGFloat?
 
@@ -48,16 +51,19 @@ struct MonthView: View {
                     ForEach(0..<7) { column in
                         let dayIndex = column + (row * 7)
                         let day = month.days[dayIndex]
-                        DayView(day: day)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .overlay(GeometryReader { geometry -> Color in
-                                if (dayIndex == startingSpaces) {
-                                    DispatchQueue.main.async {
-                                        leadingPadding  = geometry.frame(in: .named(coordinateSpaceName)).minX
+                        if let date = day.date {
+                            var moods = moodLog.filter { $0.timestamp!.isSameDay(date: date) }
+                            DayView(day: day, moods: moods)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .overlay(GeometryReader { geometry -> Color in
+                                    if (dayIndex == startingSpaces) {
+                                        DispatchQueue.main.async {
+                                            leadingPadding  = geometry.frame(in: .named(coordinateSpaceName)).minX
+                                        }
                                     }
-                                }
-                                return Color.clear
-                            })
+                                    return Color.clear
+                                })
+                        }
                     }
                 
                     Spacer()

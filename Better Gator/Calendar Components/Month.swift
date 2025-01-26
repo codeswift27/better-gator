@@ -17,15 +17,13 @@ class Month: Identifiable, Equatable {
     var firstDayOfMonth: Date
     var days: Array<Day>
     
-    init(firstDayOfMonth: Date, events: FetchedResults<Mood>) {
+    init(firstDayOfMonth: Date) {
         let daysInMonth = firstDayOfMonth.daysInMonth()
         
         let startingSpaces = firstDayOfMonth.isWeekDay()
         var days = Array(repeating: Day(date: nil), count: startingSpaces)
 
         var date = firstDayOfMonth
-        var moods = events.filter { $0.timestamp.d }
-        if events.contains(where: { $0.someProperty == "nameToMatch" })
         days.append(Day(date: date))
         for _ in 1..<daysInMonth {
             date = date.plusDate()

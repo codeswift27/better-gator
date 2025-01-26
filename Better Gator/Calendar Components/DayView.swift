@@ -9,6 +9,12 @@ import SwiftUI
 
 struct DayView: View {
     var day: Day
+    var moods: [Emotion]
+    
+    init(day: Day, moods: [Mood]) {
+        self.day = day
+        self.moods = moods.map { Emotion(rawValue: Int($0.emotion)) ?? .calm }
+    }
     
     var body: some View {
         VStack(alignment: .center) {
@@ -29,27 +35,27 @@ struct DayView: View {
                 }
                 VStack(spacing: 4) {
                     Rectangle()
-                        .fill(day.moods.contains(.excited) ? Color.orange : .clear)
+                        .fill(moods.contains(.excited) ? Color.orange : .clear)
                         .cornerRadius(10)
                         .frame(width: 36, height: 6)
                     Rectangle()
-                        .fill(day.moods.contains(.happy) ? Color.yellow : .clear)
+                        .fill(moods.contains(.happy) ? Color.yellow : .clear)
                         .cornerRadius(10)
                         .frame(width: 36, height: 6)
                     Rectangle()
-                        .fill(day.moods.contains(.calm) ? Color.purple : .clear)
+                        .fill(moods.contains(.calm) ? Color.purple : .clear)
                         .cornerRadius(10)
                         .frame(width: 36, height: 6)
                     Rectangle()
-                        .fill(day.moods.contains(.nervous) ? Color.green : .clear)
+                        .fill(moods.contains(.nervous) ? Color.green : .clear)
                         .cornerRadius(10)
                         .frame(width: 36, height: 6)
                     Rectangle()
-                        .fill(day.moods.contains(.sad) ? Color.blue : .clear)
+                        .fill(moods.contains(.sad) ? Color.blue : .clear)
                         .cornerRadius(10)
                         .frame(width: 36, height: 6)
                     Rectangle()
-                        .fill(day.moods.contains(.angry) ? Color.red : .clear)
+                        .fill(moods.contains(.angry) ? Color.red : .clear)
                         .cornerRadius(10)
                         .frame(width: 36, height: 6)
                 }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CalendarView: View {
+//    @Environment(\.managedObjectContext) private var viewContext
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\Mood.timestamp)])
+//    private var moodLog: FetchedResults<Mood>
     @StateObject var calendarModel = CalendarModel()
     @State var monthId: Month.ID?
     @State var showMonthLabel: Bool = false
@@ -15,7 +18,6 @@ struct CalendarView: View {
     
 
     var body: some View {
-       
         VStack(
             alignment: .center,
             spacing: 0
@@ -143,7 +145,9 @@ struct CalendarView: View {
             
             
         }
-        
+//        .onAppear {
+//            calendarModel.getMonths(moodLog: moodLog)
+//        }
     }
 }
 
