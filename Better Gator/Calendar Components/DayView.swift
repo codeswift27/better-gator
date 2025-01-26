@@ -19,12 +19,12 @@ struct DayView: View {
                     .fontWeight(
                         date.isToday() ? Font.Weight.bold : Font.Weight.regular
                     )
-                    .foregroundStyle(foregroundColor)
+                    .foregroundStyle(Color.primary)
                     .background(Circle()
                         .fill(date.isToday() ? Color.red : Color.white )
                         .frame(width: 35, height: 35, alignment: .center)
                     )
-                if (hasEvent) {
+                if (day.hasEvent) {
                     Circle()
                         .fill(Color(UIColor.gray))
                         .frame(width: 8, height: 8)

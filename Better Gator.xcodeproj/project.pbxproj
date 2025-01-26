@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		5EE185112D45B3600037F0DB /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 5EE185102D45B3600037F0DB /* GoogleGenerativeAI */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		C93983252D4540BC00D53D80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -69,7 +65,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EE185112D45B3600037F0DB /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +125,6 @@
 			);
 			name = "Better Gator";
 			packageProductDependencies = (
-				5EE185102D45B3600037F0DB /* GoogleGenerativeAI */,
 			);
 			productName = "Better Gator";
 			productReference = C939830D2D4540BC00D53D80 /* Better Gator.app */;
@@ -214,9 +208,6 @@
 			);
 			mainGroup = C93983042D4540BC00D53D80;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				5EE1850F2D45B3600037F0DB /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C939830E2D4540BC00D53D80 /* Products */;
 			projectDirPath = "";
@@ -584,25 +575,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		5EE1850F2D45B3600037F0DB /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/generative-ai-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.6;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		5EE185102D45B3600037F0DB /* GoogleGenerativeAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5EE1850F2D45B3600037F0DB /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
-			productName = GoogleGenerativeAI;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C93983052D4540BC00D53D80 /* Project object */;
 }
