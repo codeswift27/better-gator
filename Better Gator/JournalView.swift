@@ -12,7 +12,7 @@ struct JournalView: View {
     let model = GenerativeModel(name: "gemini-pro", apiKey: APIKey.default)
 
     @Environment(\.managedObjectContext) private var journal
-    @State private var currentMood: Emotion = .happy
+    @Binding var currentMood: Emotion?
     @State private var journalInput = ""
     @State private var prompt = ""
     @State private var response: LocalizedStringKey = " "
@@ -92,8 +92,8 @@ struct JournalView: View {
                 }
                 .padding()
             }
-            .onAppear { prompt = promptDict[currentMood.rawValue] ?? "" }
-            .onChange(of: currentMood) { _, newValue in
+            .onAppear { prompt = promptDict[currentMood?.rawValue ?? 2] ?? "" }
+            .onChange(of: currentMood ?? Emotion.calm) { _, newValue in
                 prompt = promptDict[newValue.rawValue] ?? ""
             }
         }
@@ -101,5 +101,5 @@ struct JournalView: View {
 }
 
 #Preview {
-    JournalView()
+    JournalView(currentMood: .constant(.calm))
 }

@@ -18,7 +18,7 @@ enum Emotion: Int {
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State var currentMood: Emotion? = nil
+    @Binding var currentMood: Emotion?
     var body: some View {
         NavigationView {
             VStack {
@@ -120,5 +120,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(currentMood: .constant(.calm))
 }
