@@ -38,8 +38,7 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
-                                .background(currentMood == .excited ? Color.blue.opacity(0.2) : Color.clear)
-                                .animation(.easeInOut, value: currentMood)
+                                .background(currentMood == .excited ? Color.accentColor.opacity(0.2) : Color.clear)
                                 .onTapGesture {
                                     currentMood = .excited
                                 }
@@ -47,8 +46,7 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
-                                .background(currentMood == .happy ? Color.blue.opacity(0.2) : Color.clear)
-                                .animation(.easeInOut, value: currentMood)
+                                .background(currentMood == .happy ? Color.accentColor.opacity(0.2) : Color.clear)
                                 .onTapGesture {
                                     currentMood = .happy
                                 }
@@ -58,8 +56,7 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
-                                .background(currentMood == .calm ? Color.blue.opacity(0.2) : Color.clear)
-                                .animation(.easeInOut, value: currentMood)
+                                .background(currentMood == .calm ? Color.accentColor.opacity(0.2) : Color.clear)
                                 .onTapGesture {
                                     currentMood = .calm
                                 }
@@ -67,7 +64,7 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
-                                .background(currentMood == .nervous ? Color.blue.opacity(0.2) : Color.clear)
+                                .background(currentMood == .nervous ? Color.accentColor.opacity(0.2) : Color.clear)
                                 .onTapGesture {
                                     currentMood = .nervous
                                 }
@@ -77,8 +74,7 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
-                                .background(currentMood == .sad ? Color.blue.opacity(0.2) : Color.clear)
-                                .animation(.easeInOut, value: currentMood)
+                                .background(currentMood == .sad ? Color.accentColor.opacity(0.2) : Color.clear)
                                 .onTapGesture {
                                     currentMood = .sad
                                 }
@@ -86,8 +82,7 @@ struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 150)
-                                .background(currentMood == .angry ? Color.blue.opacity(0.2) : Color.clear)
-                                .animation(.easeInOut, value: currentMood)
+                                .background(currentMood == .angry ? Color.accentColor.opacity(0.2) : Color.clear)
                                 .onTapGesture {
                                     currentMood = .angry
                                 }
