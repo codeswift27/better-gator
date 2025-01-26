@@ -92,6 +92,14 @@ extension Date {
         return (todayDateString == dateToCompareString)
     }
     
+    func isSameDay() -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let todayDateString = dateFormatter.string(from: Date())
+        let dateToCompareString = dateFormatter.string(from: self)
+        return (todayDateString == dateToCompareString)
+    }
+    
     
     func isWeekend() -> Bool {
         let weekday = self.isWeekDay()

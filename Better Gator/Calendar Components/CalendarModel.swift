@@ -8,6 +8,10 @@
 import SwiftUI
 
 class CalendarModel: ObservableObject {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\Mood.timestamp)])
+    private var moodLog: FetchedResults<Mood>
+    
     @Published var months: [Month]
     
     init() {
@@ -15,11 +19,11 @@ class CalendarModel: ObservableObject {
         let firstDayOfCurrentMonth = today.firstDayOfMonth()
         var firstDayOfMonth = firstDayOfCurrentMonth.minusMonth(5)
         
-        var months: [Month] = [Month(firstDayOfMonth: firstDayOfMonth)]
+        var months: [Month] = [Month(firstDayOfMonth: firstDayOfMonth, events: moodLog)]
 
         for _ in 0..<11 {
             firstDayOfMonth = firstDayOfMonth.plusMonth()
-            months.append(Month(firstDayOfMonth: firstDayOfMonth))
+            months.append(Month(firstDayOfMonth: firstDayOfMonth, events: moodLog))
         }
         
         self.months = months
