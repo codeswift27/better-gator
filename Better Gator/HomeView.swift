@@ -24,7 +24,6 @@ struct HomeView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
 
-    @State var currentMood: Emotion? = nil
 
     @State private var currentQuote: String = ""
 
@@ -82,6 +81,8 @@ struct HomeView: View {
 
     }
 
+    @Binding var currentMood: Emotion?
+
     var body: some View {
 
         NavigationView {
@@ -122,9 +123,10 @@ struct HomeView: View {
 
                                 .frame(height: 150)
 
+                                .background(currentMood == .excited ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-
-                                    currentMood = .angry
+                                    currentMood = .excited
 
                                 }
 
@@ -136,9 +138,10 @@ struct HomeView: View {
 
                                 .frame(height: 150)
 
+                                .background(currentMood == .happy ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-
-                                    currentMood = .sad
+                                    currentMood = .happy
 
                                 }
 
@@ -154,6 +157,9 @@ struct HomeView: View {
 
                                 .frame(height: 150)
 
+                                .background(currentMood == .calm ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
+
                                 .onTapGesture {
 
                                     currentMood = .calm
@@ -167,6 +173,9 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
 
                                 .frame(height: 150)
+
+                                .background(currentMood == .nervous ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
 
                                 .onTapGesture {
 
@@ -186,9 +195,10 @@ struct HomeView: View {
 
                                 .frame(height: 150)
 
+                                .background(currentMood == .sad ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-
-                                    currentMood = .happy
+                                    currentMood = .sad
 
                                 }
 
@@ -200,10 +210,10 @@ struct HomeView: View {
 
                                 .frame(height: 150)
 
+                                .background(currentMood == .angry ? Color.accentColor.opacity(0.2) : Color.clear)
+                                .cornerRadius(10) 
                                 .onTapGesture {
-
-                                    currentMood = .excited
-
+                                    currentMood = .angry
                                 }
 
                         }
@@ -312,10 +322,7 @@ struct HomeView: View {
 
     }
 
+#Preview {
+    HomeView(currentMood: .constant(.calm))
+}
 
-
-    #Preview {
-
-        HomeView()
-
-    }
