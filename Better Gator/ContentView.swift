@@ -15,18 +15,19 @@ struct ContentView: View {
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
 //        animation: .default)
 //    private var items: FetchedResults<Item>
+    @State var currentMood: Emotion? = nil
 
     var body: some View {
         TabView {
-            Text("home")
+            HomeView(currentMood: $currentMood)
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
-            Text("Meditation")
+            MeditationView()
                 .tabItem {
                     Label("Meditate", systemImage: "camera.macro")
                 }
-            Text("fhdjsk")
+            JournalView(currentMood: $currentMood)
                 .tabItem {
                     Label("Journal", systemImage: "book.closed.fill")
                 }
@@ -36,45 +37,9 @@ struct ContentView: View {
                 }
         }
     }
-
-//    private func addItem() {
-//        withAnimation {
-//            let newItem = Item(context: viewContext)
-//            newItem.timestamp = Date()
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
-//
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { items[$0] }.forEach(viewContext.delete)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
 }
+//    }
 
-//private let itemFormatter: DateFormatter = {
-//    let formatter = DateFormatter()
-//    formatter.dateStyle = .short
-//    formatter.timeStyle = .medium
-//    return formatter
-//}()
 
 #Preview {
     ContentView()
