@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @Binding var isPresented: Bool
-    @State private var userName: String = "John Doe"
+    @State private var userName: String =  UserDefaults.standard.integer(forKey: "Save") ?? "John Doe"
+    
     
     var body: some View {
         NavigationView {
@@ -54,6 +55,7 @@ struct ProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
+                        saveChanges()
                         isPresented.toggle()
                     }) {
                         Text("Done")
@@ -66,11 +68,9 @@ struct ProfileView: View {
     
     // Function to simulate saving changes
     private func saveChanges() {
+        UserDefaults.standard.set(userName, forKey: "Save")
         print("User name saved: \(userName)")
     }
     
-    // Function to reset changes (for demonstration purposes)
-    private func resetChanges() {
-        userName = "John Doe"
-    }
+    
 }
