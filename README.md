@@ -1,5 +1,5 @@
 # Better Gator
-Mental Health concerns are on the rise and affect a wide range of individuals, especially college students. However, the stigma around mental health makes it difficult for students to reach out for support. The purpose of Better Gator is to create a safe space for the University of Florida students to deal with stress and to express and manage their day to day feelings in an accesible and free way.
+Mental health concerns are on the rise and affect a wide range of individuals, especially college students. However, the stigma around mental health makes it difficult for students to reach out for support. The purpose of Better Gator is to create a safe space for the University of Florida students to deal with stress and to express and manage their day to day feelings in an accesible and free way.
 
 ## Project Description
 Our iOS app provides students with several functionalities including:
