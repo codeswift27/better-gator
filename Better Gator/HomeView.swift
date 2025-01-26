@@ -19,6 +19,15 @@ enum Emotion: Int {
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var currentMood: Emotion? = nil
+    @State private var currentQuote: String = ""
+
+    let quotes = ["Keep your face always toward the sunshine, and shadows will fall behind you.",
+                   "Go confidently in the direction of your dreams. Live the life you have imagined.",
+                   "A person who never made a mistake never tried anything new.",
+                   "Great works are performed not by strength, but perseverance.",
+                   "Where there is love, there is life.",
+                   "All our dreams can come true, if we have the courage to pursue them."]
+    
     private var greetingTime: String {
 
         let hour = Calendar.current.component(.hour, from: Date())
@@ -127,7 +136,33 @@ struct HomeView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 Spacer()
+
+                VStack {
+                    Text(currentQuote.isEmpty ? "Tap the button for a quote!" : currentQuote)
+                        .font(.title)
+                        .fontWeight(.medium)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    
+                    Button(action: {
+                        currentQuote = quotes.randomElement() ?? "Keep pushing forward!"
+                    }) {
+                        Text("Get a Quote")
+                            .font(.headline)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding()
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(20)
+                .shadow(radius: 10)
             }
+            
             .navigationTitle("Hello, Name")
         }
     }
