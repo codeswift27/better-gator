@@ -4,7 +4,6 @@
 //
 //  Created by Foege, Erin M. on 1/25/25.
 //
-
 import SwiftUI
 import GoogleGenerativeAI
 
@@ -32,7 +31,7 @@ struct JournalView: View {
         isLoading = true
         defer { isLoading = false } // Ensure loading is stopped even if an error occurs
         do {
-            let result = try await model.generateContent(journalInput)
+            let result = try await model.generateContent("Write a 2 sentence encouraging response for this user's entry: "journalInput)
             response = LocalizedStringKey(result.text ?? "No response found")
         } catch {
             response = LocalizedStringKey("Something went wrong! \n\(error.localizedDescription)")
