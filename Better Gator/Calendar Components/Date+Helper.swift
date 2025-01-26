@@ -84,7 +84,6 @@ extension Date {
     }
 
     
-    // is the date today (Bool)
     func isToday() -> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -94,16 +93,19 @@ extension Date {
     }
     
     
-    // is the date a weekend (Bool)
     func isWeekend() -> Bool {
         let weekday = self.isWeekDay()
         return ((weekday == 0 ) || (weekday == 6))
     }
         
         
-        // is the date in the same month as today (Bool)
     func isCurrentMonth() -> Bool {
         let today = Date()
         return (today.year() == self.year()) && (today.month() == self.month())
+    }
+    
+    static func weekdaySymbols() -> [String] {
+        let calendar = Calendar.current
+        return calendar.veryShortStandaloneWeekdaySymbols
     }
 }

@@ -37,7 +37,7 @@ class CalendarModel: ObservableObject {
         }
     }
     
-    func monthModelFromId(_ id: UUID?) -> Month {
+    func monthFromId(_ id: UUID?) -> Month {
         if id == nil {
             return Month(firstDayOfMonth: Date().firstDayOfMonth())
         }

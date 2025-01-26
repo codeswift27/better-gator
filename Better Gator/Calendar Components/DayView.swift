@@ -11,20 +11,22 @@ struct DayView: View {
     var day: Day
     
     var body: some View {
-        VStack(alignment: .center, spacing: 8) {
+        VStack(alignment: .center) {
             if let date = day.date {
-                Text("\(date.day())")
-                    .padding(8)
-                    .font(.system(size: 18))
-                    .fontWeight(
-                        date.isToday() ? Font.Weight.bold : Font.Weight.regular
-                    )
-                    .foregroundStyle(Color.primary)
-                    .background(
-                        Circle()
-                            .fill(date.isToday() ? Color.red : Color.white )
-                            .frame(width: 35, height: 35, alignment: .center)
-                    )
+                ZStack {
+                    Text("\(date.day())")
+                }
+                .frame(width: 16, height: 16)
+                .font(.system(size: 18))
+                .fontWeight(
+                    date.isToday() ? Font.Weight.bold : Font.Weight.regular
+                )
+                .foregroundStyle(Color.primary)
+                .background(
+                    Circle()
+                        .fill(date.isToday() ? Color.red : Color.white )
+                        .frame(width: 35, height: 35, alignment: .center)
+                )
                 if (day.hasEvent) {
                     Circle()
                         .fill(Color(UIColor.gray))
