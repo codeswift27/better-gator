@@ -11,11 +11,11 @@ struct Day: Identifiable {
     var id: UUID = UUID()
     
     var date: Date?
-    var hasEvent: Bool
+    var moods: [Emotion]
     
-    init(date: Date?) {
+    init(date: Date?, moods: [Emotion] = []) {
         self.date = date
-        self.hasEvent = date?.day().isMultiple(of: 5) ?? false
+        self.moods = moods
     }
     
 }

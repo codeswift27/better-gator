@@ -8,6 +8,10 @@
 import Foundation
 
 class Month: Identifiable, Equatable {
+    @FetchRequest(sortDescriptors: [SortDescriptor(\Mood.timestamp)])
+    private var moodLog: FetchedResults<Mood>
+    
+    
     static func == (lhs: Month, rhs: Month) -> Bool{
         return lhs.id == rhs.id
     }
@@ -23,7 +27,8 @@ class Month: Identifiable, Equatable {
         var days = Array(repeating: Day(date: nil), count: startingSpaces)
 
         var date = firstDayOfMonth
-        days.append(Day(date: date))
+//        contains(where: { $0.someProperty == "nameToMatch" })
+        days.append(Day(date: date)
         for _ in 1..<daysInMonth {
             date = date.plusDate()
             days.append(Day(date: date))
