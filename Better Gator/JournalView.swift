@@ -37,7 +37,6 @@ struct JournalView: View {
         } catch {
             response = LocalizedStringKey("Something went wrong! \n\(error.localizedDescription)")
         }
-        journalInput = ""
     }
 
     var body: some View {
@@ -57,10 +56,21 @@ struct JournalView: View {
                         .font(.headline)
                         .padding()
 
-                    TextField("Enter your journal entry here", text: $journalInput, axis: .vertical)
+                    TextField("Enter your journal entry here", text: Binding(
+                        get: { journalInput },
+                        set:
+                            { (newValue, _) in
+                                if let _ = newValue.lastIndex(of: "\n") {
+                                    focus = false
+                                } else {
+                                    journalInput = newValue
+                                }
+                            }
+                      ), axis: .vertical)
                         .padding()
+                        .submitLabel(.done)
                         .focused($focus)
-                        .onSubmit {
+                        .onChange(of: focus) {
                             guard !journalInput.isEmpty else { return }
                             print("Submitting")
                             Task {
@@ -73,7 +83,7 @@ struct JournalView: View {
                     if isLoading {
                         ProgressView()
                             .padding()
-                    } else if !response.isEmpty {
+                    } else if response != "" {
                         Text(response)
                             .font(.body)
                             .padding()
