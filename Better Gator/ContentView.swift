@@ -31,6 +31,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Journal", systemImage: "book.closed.fill")
                 }
+            CalendarView()
+                .tabItem {
+                    Label("Calendar", systemImage: "calendar")
+                }
         }
     }
 }
