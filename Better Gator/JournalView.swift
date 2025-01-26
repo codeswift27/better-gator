@@ -40,62 +40,59 @@ struct JournalView: View {
     }
 
     var body: some View {
-        VStack {
-            Text("Journal")
-                .font(.title)
-                .padding()
-
-            ZStack {
-                Rectangle()
-                    .fill(Color.accentColor)
-                    .opacity(0.5)
-                    .cornerRadius(10)
-                    .padding()
-
-                VStack {
-                    Text(prompt)
-                        .font(.headline)
+        NavigationView {
+            VStack {
+                ZStack {
+                    Rectangle()
+                        .fill(Color.accentColor)
+                        .opacity(0.5)
+                        .cornerRadius(10)
                         .padding()
-
-                    TextField("Enter your journal entry here", text: Binding(
-                        get: { journalInput },
-                        set:
-                            { (newValue, _) in
-                                if let _ = newValue.lastIndex(of: "\n") {
-                                    focus = false
-                                } else {
-                                    journalInput = newValue
+                    VStack {
+                        Text(prompt)
+                            .font(.headline)
+                            .padding()
+                        TextField("Enter your journal entry here", text: Binding(
+                            get: { journalInput },
+                            set:
+                                { (newValue, _) in
+                                    if let _ = newValue.lastIndex(of: "\n") {
+                                        focus = false
+                                    } else {
+                                        journalInput = newValue
+                                    }
+                                }
+                          ), axis: .vertical)
+                            .padding()
+                            .submitLabel(.done)
+                            .focused($focus)
+                            .onChange(of: focus) {
+                                guard !journalInput.isEmpty else { return }
+                                print("Submitting")
+                                Task {
+                                    await generateResponse()
                                 }
                             }
-                      ), axis: .vertical)
-                        .padding()
-                        .submitLabel(.done)
-                        .focused($focus)
-                        .onChange(of: focus) {
-                            guard !journalInput.isEmpty else { return }
-                            print("Submitting")
-                            Task {
-                                await generateResponse()
-                            }
+
+                        Spacer()
+
+                        if isLoading {
+                            ProgressView()
+                                .padding()
+                        } else if response != "" {
+                            Text(response)
+                                .font(.body)
+                                .padding()
                         }
-
-                    Spacer()
-
-                    if isLoading {
-                        ProgressView()
-                            .padding()
-                    } else if response != "" {
-                        Text(response)
-                            .font(.body)
-                            .padding()
                     }
+                    .padding()
                 }
-                .padding()
+                .onAppear { prompt = promptDict[currentMood?.rawValue ?? 2] ?? "" }
+                .onChange(of: currentMood ?? Emotion.calm) { _, newValue in
+                    prompt = promptDict[newValue.rawValue] ?? ""
+                }
             }
-            .onAppear { prompt = promptDict[currentMood?.rawValue ?? 2] ?? "" }
-            .onChange(of: currentMood ?? Emotion.calm) { _, newValue in
-                prompt = promptDict[newValue.rawValue] ?? ""
-            }
+            .navigationTitle("Journal")
         }
     }
 }

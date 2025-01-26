@@ -21,13 +21,8 @@ enum Emotion: Int {
 
 
 struct HomeView: View {
-
     @Environment(\.managedObjectContext) private var viewContext
-
-
     @State private var currentQuote: String = ""
-
-    
 
     let quotes = ["Keep your face always toward the sunshine, and shadows will fall behind you.",
 
@@ -41,286 +36,142 @@ struct HomeView: View {
 
                   "All our dreams can come true, if we have the courage to pursue them."]
 
-    
-
     private var greetingTime: String {
-
-        
-
         let hour = Calendar.current.component(.hour, from: Date())
-
-        
-
         if hour < 12 {
-
-            
-
             return "Good morning"
-
-            
-
         } else if hour >= 12 && hour < 18 {
-
-            
-
             return "Good afternoon"
-
-            
-
         } else {
-
-            
-
             return "Good evening"
-
-            
-
         }
-
-        
-
     }
 
     @Binding var currentMood: Emotion?
-
     var body: some View {
-
         NavigationView {
-
-            ScrollView{
-
-            VStack {
-
-                HStack {
-
-                    Spacer()
-
-                    Image(systemName: "person.crop.circle.fill")
-
-                    //                        .resizable()
-
-                    //                        .frame(height: )
-
-                }
-
-                .padding()
-
-                Text("How are you feeling?")
-
-                    .font(.headline)
-
-                HStack {
-
-                    VStack {
-
-                        HStack {
-
-                            Image("excited")
-
-                                .resizable()
-
-                                .aspectRatio(contentMode: .fit)
-
-                                .frame(height: 150)
-
-                                .background(currentMood == .excited ? Color.accentColor.opacity(0.2) : Color.clear)
-                                .cornerRadius(10) 
-                                .onTapGesture {
-                                    currentMood = .excited
-
-                                }
-
-                            Image("happy")
-
-                                .resizable()
-
-                                .aspectRatio(contentMode: .fit)
-
-                                .frame(height: 150)
-
-                                .background(currentMood == .happy ? Color.accentColor.opacity(0.2) : Color.clear)
-                                .cornerRadius(10) 
-                                .onTapGesture {
-                                    currentMood = .happy
-
-                                }
-
-                        }
-
-                        HStack {
-
-                            Image("calm")
-
-                                .resizable()
-
-                                .aspectRatio(contentMode: .fit)
-
-                                .frame(height: 150)
-
-                                .background(currentMood == .calm ? Color.accentColor.opacity(0.2) : Color.clear)
-                                .cornerRadius(10) 
-
-                                .onTapGesture {
-
-                                    currentMood = .calm
-
-                                }
-
-                            Image("nervous")
-
-                                .resizable()
-
-                                .aspectRatio(contentMode: .fit)
-
-                                .frame(height: 150)
-
-                                .background(currentMood == .nervous ? Color.accentColor.opacity(0.2) : Color.clear)
-                                .cornerRadius(10) 
-
-                                .onTapGesture {
-
-                                    currentMood = .nervous
-
-                                }
-
-                        }
-
-                        HStack {
-
-                            Image("sad")
-
-                                .resizable()
-
-                                .aspectRatio(contentMode: .fit)
-
-                                .frame(height: 150)
-
-                                .background(currentMood == .sad ? Color.accentColor.opacity(0.2) : Color.clear)
-                                .cornerRadius(10) 
-                                .onTapGesture {
-                                    currentMood = .sad
-
-                                }
-
-                            Image("angry")
-
-                                .resizable()
-
-                                .aspectRatio(contentMode: .fit)
-
-                                .frame(height: 150)
-
-                                .background(currentMood == .angry ? Color.accentColor.opacity(0.2) : Color.clear)
-                                .cornerRadius(10) 
-                                .onTapGesture {
-                                    currentMood = .angry
-                                }
-
-                        }
-
-                    }
-
-                    .padding()
-
-                    .background(Color(UIColor.secondarySystemBackground))
-
-                    .cornerRadius(10)
-
-                }
-
-                  Button(action: {
-
-                    guard let currentMood = currentMood else { return }
-
-                    let newMood = Mood(context: viewContext)
-
-                    newMood.emotion = Int32(currentMood.rawValue)
-
-                    newMood.timestamp = Date()
-
-                    do {
-
-                        try viewContext.save()
-
-                    } catch {
-
-                         print("error!!")
-
-                  }
-
-                  }) {
-
-                  Text("Log emotion")
-
-                  }
-
-                  .buttonStyle(.borderedProminent)
-
-                Spacer()
-
-                
-
+            ScrollView {
                 VStack {
-
-                    Text(currentQuote.isEmpty ? "Tap the button for a quote!" : currentQuote)
-
-                        .font(.subheadline)
-
-                        .font(.caption)
-
-                        .fontWeight(.medium)
-
-                        .foregroundStyle(.green)
-
-                        .multilineTextAlignment(.center)
-
-                        .padding()
-
-                    
-
-                    Button(action: {
-
-                        currentQuote = quotes.randomElement() ?? "Keep pushing forward!"
-
-                    }) {
-
-                        Text("Get a Quote")
-
-                            .font(.headline)
-
-                            .padding()
-
-                            .frame(maxWidth: .infinity)
-
-                            .background(Color.blue)
-
-                            .foregroundColor(.white)
-
-                            .cornerRadius(10)
-
+                    HStack {
+                        Spacer()
+                        Image(systemName: "person.crop.circle.fill")
                     }
-
                     .padding()
-
+                    Text("How are you feeling?")
+                        .font(.headline)
+                    HStack {
+                        VStack {
+                            HStack {
+                                Image("excited")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .background(currentMood == .excited ? Color.accentColor.opacity(0.2) : Color.clear)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        currentMood = .excited
+                                    }
+                                Image("happy")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .background(currentMood == .happy ? Color.accentColor.opacity(0.2) : Color.clear)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        currentMood = .happy
+                                    }
+                            }
+                            HStack {
+                                Image("calm")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .background(currentMood == .calm ? Color.accentColor.opacity(0.2) : Color.clear)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        currentMood = .calm
+                                    }
+                                Image("nervous")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .background(currentMood == .nervous ? Color.accentColor.opacity(0.2) : Color.clear)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        currentMood = .nervous
+                                    }
+                            }
+                            HStack {
+                                Image("sad")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .background(currentMood == .sad ? Color.accentColor.opacity(0.2) : Color.clear)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        currentMood = .sad
+                                    }
+                                Image("angry")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .background(currentMood == .angry ? Color.accentColor.opacity(0.2) : Color.clear)
+                                    .cornerRadius(10)
+                                    .onTapGesture {
+                                        currentMood = .angry
+                                    }
+                            }
+                        }
+                        .padding()
+                        .cornerRadius(10)
+                        
+                    }
+                    Button(action: {
+                        guard let currentMood = currentMood else { return }
+                        let newMood = Mood(context: viewContext)
+                        newMood.emotion = Int32(currentMood.rawValue)
+                        newMood.timestamp = Date()
+                        do {
+                            try viewContext.save()
+                        } catch {
+                            print("error!!")
+                        }
+                    }) {
+                        Text("Log Emotion")
+                    }
+                    .buttonStyle(.bordered)
+                    Spacer()
+                    VStack {
+                        Text(currentQuote.isEmpty ? "Tap the button for a quote!" : currentQuote)
+                            .font(.subheadline)
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundStyle(.green)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                        Button(action: {
+                            currentQuote = quotes.randomElement() ?? "Keep pushing forward!"
+                        }) {
+                            Text("Get a Quote")
+                                .font(.headline)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.accentColor)
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .cornerRadius(10)
+                        }
+                        .padding()
+                    }
+                    .padding()
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
                 }
-
-                .padding()
-
-                .background(Color.white)
-
-                .cornerRadius(20)
-
-                .shadow(radius: 10)
-
-            }}
-
-                    .navigationTitle(greetingTime)
-
             }
-
+            .navigationTitle(greetingTime)
         }
-
     }
+}
 
 #Preview {
     HomeView(currentMood: .constant(.calm))
