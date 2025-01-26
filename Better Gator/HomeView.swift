@@ -19,9 +19,35 @@ enum Emotion: Int {
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var currentMood: Emotion? = nil
+    private var greetingTime: String {
+
+        let hour = Calendar.current.component(.hour, from: Date())
+
+        if hour < 12 {
+
+            return "Good morning"
+
+        } else if hour >= 12 && hour < 18 {
+
+            return "Good afternoon"
+
+        } else {
+
+            return "Good evening"
+
+        }
+
+    }
     var body: some View {
         NavigationView {
             VStack {
+                Text("\(greetingTime)!")
+
+                    .font(.largeTitle)
+
+                    .fontWeight(.bold)
+
+                    .padding(.top)
                 HStack {
                     Spacer()
                     Image(systemName: "person.crop.circle.fill")
